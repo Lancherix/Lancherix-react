@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lancherixreact-dev-1a0cb-authRole",
+      "UnauthRoleArn": "arn:aws:iam::851725648166:role/amplify-lancherixreact-dev-1a0cb-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::851725648166:role/amplify-lancherixreact-dev-1a0cb-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lancherixreact-dev-1a0cb-deployment",
+      "UnauthRoleName": "amplify-lancherixreact-dev-1a0cb-unauthRole",
+      "StackName": "amplify-lancherixreact-dev-1a0cb",
+      "StackId": "arn:aws:cloudformation:us-east-1:851725648166:stack/amplify-lancherixreact-dev-1a0cb/691dba80-2852-11ef-a2e3-0affe3977dd9",
+      "AmplifyAppId": "d2gc5dn5y7yfaj"
+    },
+    "categories": {
+      "auth": {
+        "lancherixreactc0a89564": {}
+      }
+    }
+  }
+}

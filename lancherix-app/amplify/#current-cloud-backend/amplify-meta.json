@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lancherixreact-dev-1a0cb-authRole",
+      "UnauthRoleArn": "arn:aws:iam::851725648166:role/amplify-lancherixreact-dev-1a0cb-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::851725648166:role/amplify-lancherixreact-dev-1a0cb-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lancherixreact-dev-1a0cb-deployment",
+      "UnauthRoleName": "amplify-lancherixreact-dev-1a0cb-unauthRole",
+      "StackName": "amplify-lancherixreact-dev-1a0cb",
+      "StackId": "arn:aws:cloudformation:us-east-1:851725648166:stack/amplify-lancherixreact-dev-1a0cb/691dba80-2852-11ef-a2e3-0affe3977dd9",
+      "AmplifyAppId": "d2gc5dn5y7yfaj"
+    }
+  },
+  "auth": {
+    "lancherixreactc0a89564": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lancherixreact-dev-1a0cb-deployment/amplify-cfn-templates/auth/lancherixreactc0a89564-cloudformation-template.json",
+        "logicalId": "authlancherixreactc0a89564"
+      },
+      "lastPushTimeStamp": "2024-06-12T03:28:06.092Z",
+      "output": {
+        "UserPoolId": "us-east-1_HmyJE6KMo",
+        "AppClientIDWeb": "6ub3jiqcm9lrbq08ls78b8vmrg",
+        "AppClientID": "5a61pqlj9940sc9nsdtpnckkun",
+        "IdentityPoolId": "us-east-1:f8acccd9-8b61-452c-b44a-4fb570c97cee",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:851725648166:userpool/us-east-1_HmyJE6KMo",
+        "IdentityPoolName": "lancherixreactc0a89564_identitypool_c0a89564__dev",
+        "UserPoolName": "lancherixreactc0a89564_userpool_c0a89564"
+      },
+      "lastPushDirHash": "zg6ZFZaEzV6gqsXv2omDkY5MHUA="
+    }
+  }
+}
