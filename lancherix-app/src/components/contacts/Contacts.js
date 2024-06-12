@@ -1,6 +1,9 @@
 import { useState } from 'react';
-// import { Amplify/*, Storage, API*/ } from 'aws-amplify';
-import { Amplify/*, Storage*/ } from 'aws-amplify';
+import { Amplify } from 'aws-amplify';
+import awsconfig from '../../aws-exports'; // Ensure the path to aws-exports is correct
+
+import { Storage } from 'aws-amplify';
+import { API } from 'aws-amplify';
 import { graphqlOperation } from '@aws-amplify/api-graphql';
 
 import { createContact } from '../../graphql/mutations';
@@ -13,6 +16,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import { v4 as uuid } from 'uuid';
+
+// Configure Amplify
+Amplify.configure(awsconfig);
 
 // Amplify.configure({
 //   Auth: {
@@ -33,7 +39,7 @@ import { v4 as uuid } from 'uuid';
 //   }
 // });
 
-const { Storage } = Amplify;
+// const { Storage, API } = Amplify;
 
 function Contacts() {
     const [contactData, setContactData] = useState({ name: "", email: "", cell: "" });
@@ -59,7 +65,7 @@ function Contacts() {
         };
 
         // Persist new Contact
-        await Amplify.API.graphql(graphqlOperation(createContact, { input: newContact }));
+        await API.graphql(graphqlOperation(createContact, { input: newContact }));
     };
 
     return (
