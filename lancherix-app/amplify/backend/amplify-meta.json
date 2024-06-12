@@ -42,7 +42,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-lancherixreact-dev-1a0cb-deployment/amplify-cfn-templates/auth/lancherixreactc0a89564-cloudformation-template.json",
         "logicalId": "authlancherixreactc0a89564"
       },
-      "lastPushTimeStamp": "2024-06-12T15:57:34.110Z",
+      "lastPushTimeStamp": "2024-06-12T16:48:13.401Z",
       "output": {
         "UserPoolId": "us-east-1_HmyJE6KMo",
         "AppClientIDWeb": "6ub3jiqcm9lrbq08ls78b8vmrg",
@@ -60,7 +60,7 @@
       "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
-      "lastPushTimeStamp": "2024-06-12T15:57:35.147Z",
+      "lastPushTimeStamp": "2024-06-12T16:48:13.406Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-lancherixreact-dev-1a0cb-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storageContactStorage"
@@ -91,7 +91,7 @@
         "GraphQLAPIEndpointOutput": "https://i7pbpvwmkna2vbpd2fzlghyu3q.appsync-api.us-east-1.amazonaws.com/graphql",
         "GraphQLAPIKeyOutput": "da2-3zptsbzljfdebbnmd5wicfhhzm"
       },
-      "lastPushTimeStamp": "2024-06-12T15:57:34.146Z",
+      "lastPushTimeStamp": "2024-06-12T16:48:13.435Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-lancherixreact-dev-1a0cb-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apicontactAPI"
