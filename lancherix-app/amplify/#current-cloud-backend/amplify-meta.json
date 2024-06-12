@@ -42,7 +42,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-lancherixreact-dev-1a0cb-deployment/amplify-cfn-templates/auth/lancherixreactc0a89564-cloudformation-template.json",
         "logicalId": "authlancherixreactc0a89564"
       },
-      "lastPushTimeStamp": "2024-06-12T03:28:06.092Z",
+      "lastPushTimeStamp": "2024-06-12T15:57:34.110Z",
       "output": {
         "UserPoolId": "us-east-1_HmyJE6KMo",
         "AppClientIDWeb": "6ub3jiqcm9lrbq08ls78b8vmrg",
@@ -53,6 +53,49 @@
         "UserPoolName": "lancherixreactc0a89564_userpool_c0a89564"
       },
       "lastPushDirHash": "zg6ZFZaEzV6gqsXv2omDkY5MHUA="
+    }
+  },
+  "storage": {
+    "ContactStorage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "lastPushTimeStamp": "2024-06-12T15:57:35.147Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lancherixreact-dev-1a0cb-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storageContactStorage"
+      },
+      "output": {
+        "BucketName": "contact-storage1a0cb-dev",
+        "Region": "us-east-1"
+      },
+      "lastPushDirHash": "rPYdc4A+0lmcL61AZs7m7QtGw1c="
+    }
+  },
+  "api": {
+    "contactAPI": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "bmbbwtg77fhdhdcwp53k5oilsu",
+        "GraphQLAPIEndpointOutput": "https://i7pbpvwmkna2vbpd2fzlghyu3q.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-3zptsbzljfdebbnmd5wicfhhzm"
+      },
+      "lastPushTimeStamp": "2024-06-12T15:57:34.146Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lancherixreact-dev-1a0cb-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apicontactAPI"
+      }
     }
   }
 }
