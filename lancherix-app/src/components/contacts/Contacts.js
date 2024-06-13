@@ -1,11 +1,8 @@
-import { useState } from 'react';
-import { Amplify } from 'aws-amplify';
-import awsconfig from '../../aws-exports'; // Ensure the path to aws-exports is correct
-
-import { Storage } from 'aws-amplify';
-import { API } from 'aws-amplify';
+import { useEffect, useState } from 'react';
+import { API, Storage } from 'aws-amplify';
 import { graphqlOperation } from '@aws-amplify/api-graphql';
 
+import { listContacts } from '../../graphql/queries';
 import { createContact } from '../../graphql/mutations';
 
 import Container from 'react-bootstrap/Container';
@@ -17,61 +14,90 @@ import Button from 'react-bootstrap/Button';
 
 import { v4 as uuid } from 'uuid';
 
-// Configure Amplify
-Amplify.configure(awsconfig);
-
-// Amplify.configure({
-//   Auth: {
-//     identityPoolId: 'us-east-1:f8acccd9-8b61-452c-b44a-4fb570c97cee',
-//     region: 'us-east-1',
-//     userPoolId: 'us-east-1_HmyJE6KMo',
-//     userPoolWebClientId: '6ub3jiqcm9lrbq08ls78b8vmrg'
-//   },
-//   Storage: {
-//     bucket: 'contact-storage1a0cb-dev',
-//     region: 'us-east-1'
-//   },
-//   API: {
-//     graphql_endpoint: 'https://i7pbpvwmkna2vbpd2fzlghyu3q.appsync-api.us-east-1.amazonaws.com/graphql',
-//     graphql_endpoint_region: 'us-east-1',
-//     authenticationType: 'API_KEY',
-//     apiKey: 'da2-3zptsbzljfdebbnmd5wicfhhzm'
-//   }
-// });
-
-// const { Storage, API } = Amplify;
-
 function Contacts() {
+    const [contacts, setContacts] = useState([]);
     const [contactData, setContactData] = useState({ name: "", email: "", cell: "" });
     const [profilePic, setProfilePic] = useState(null);
+    const [profilePicPaths, setProfilePicPaths] = useState([]);
+
+    const getContacts = async () => {
+        try {
+            const contactsData = await API.graphql(graphqlOperation(listContacts));
+            console.log(contactsData);
+
+            const contactsList = contactsData.data.listContacts.items;
+            setContacts(contactsList);
+
+            contacts.map(async (contact, indx) => {
+                const contactProfilePicPath = contacts[indx].profilePicPath;
+                try {
+                    const contactProfilePicPathURI = await Storage.get(contactProfilePicPath, {expires: 60});
+                    setProfilePicPaths([...profilePicPaths, contactProfilePicPathURI]);
+                } catch(err) {
+                    console.log('error', err);
+                }
+            });
+        } catch (err) {
+            console.log('error', err);
+        }
+    }
+
+    useEffect(() => {
+        getContacts()
+    }, []);
 
     const addNewContact = async () => {
-        const { name, email, cell } = contactData;
+        try {
+            const { name, email, cell } = contactData;
 
-        if (!profilePic) {
-            alert("Please upload a profile picture");
-            return;
+            if (!profilePic) {
+                alert("Please upload a profile picture");
+                return;
+            }
+
+            // Upload pic to S3
+            const { key } = await Storage.put(`${uuid()}.png`, profilePic, { contentType: 'image/png' });
+
+            const newContact = {
+                id: uuid(),
+                name,
+                email,
+                cell,
+                profilePicPath: key
+            };
+
+            // Persist new Contact
+            await API.graphql(graphqlOperation(createContact, { input: newContact }));
+        } catch (err) {
+            console.log('error', err);
         }
-
-        // Upload pic to S3
-        const { key } = await Storage.put(`${uuid()}.png`, profilePic, { contentType: 'image/png' });
-
-        const newContact = {
-            id: uuid(),
-            name,
-            email,
-            cell,
-            profilePicPath: key
-        };
-
-        // Persist new Contact
-        await API.graphql(graphqlOperation(createContact, { input: newContact }));
     };
 
     return (
         <Container>
             <Row className='px-4 my-5'>-</Row>
-            <Row>-</Row>
+            <Row>
+            {
+                    contacts.map((contact, indx) => {
+                        return (
+                            <Col className="px-2 my-2" key={indx}>
+                                <Card style={{ width: '12rem' }}>
+                                    <Card.Img
+                                        src={profilePicPaths[indx]}
+                                        variant="top" />
+                                    <Card.Body>
+                                        <Card.Title>{contact.name}</Card.Title>
+                                        <Card.Text>
+                                            {contact.email}
+                                            <br />{contact.cell}
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        )
+                    })
+                }
+            </Row>
             <Row className='px-4 my-5'>
                 <Col><h1>Contacts</h1></Col>
             </Row>
