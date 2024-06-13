@@ -1,4 +1,21 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
+
+function Contacts() {
+    return (
+        <Container style={{ display: 'flex' }}>
+            <Image src='/img/contact_1.png' style={{ width: '30vw'}} />
+            <Image src='/img/contact_2.png' style={{ width: '30vw' }} />
+            <Image src='/img/contact_3.png' style={{ width: '30vw' }} />
+        </Container>
+    );
+}
+
+export default Contacts;
+
+
+/*import { useEffect, useState } from 'react';
 import { API, Storage } from 'aws-amplify';
 import { graphqlOperation } from '@aws-amplify/api-graphql';
 
@@ -160,4 +177,4 @@ function Contacts() {
     );
 }
 
-export default Contacts;
+export default Contacts;*/
